@@ -1,0 +1,43 @@
+/**
+ * @Author: johnhaigh
+ * @Date:   2020-06-24T18:49:42+01:00
+ * @Last modified by:   johnhaigh
+ * @Last modified time: 2020-06-30T19:29:55+01:00
+ */
+
+
+
+#form {
+    width: 60%;
+    margin:0 auto;
+    text-align: center;
+    padding: 20px
+}
+
+#center {
+    margin: auto;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+
+.icon {
+    max-width: 40%;
+    height: auto;
+    padding: 10px;
+}
+
+body {
+    border-color: coral;
+    }
+
+h4{
+    text-align: center;
+    colour: white;
+    font-weight: 100;
+    padding: 20px;
+    }
+
+#padding{
+  padding: 30px;
+}

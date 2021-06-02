@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Profile
+{% endblock %}
+
+{% block script%}
+
+{% endblock %}
+l
+{% block style %}
+{% endblock %}
+
+{% block header%}
+{{header}}
+{% endblock %}
+
+{% block main %}
+<h4>Your skills:</h4>
+<h4>Click a skill to search for jobs requiring it!</h4>
+<h4>{{ noskills }}</h4>
+<table id="center">
+{% for rows in rows %}
+  <tr>
+
+    <td><a class="text-info" href="  https://uk.indeed.com/jobs?q={{rows['skill']}}&l={{location}}" target="_blank">{{rows["skill"]}}</a><td>
+  </tr>
+{% endfor %}
+</table>
+
+<form action="/profile" method="post" id="form">
+  <button class="btn btn-outline-dark" type="submit">Update your CV</button>
+</form>
+
+<span id="indeed_at"><a href="https://www.indeed.com/" rell="nofollow" >jobs</a> by <a href="https://www.indeed.com/" rell="nofollow" title="Job Search"><img src="https://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;" alt="Indeed job search"></a></span>
+
+
+
+
+
+{% endblock %}

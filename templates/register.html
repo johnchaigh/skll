@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+<h4> Create your SKLL profile </h4>
+
+<form action="/register" method="post" id="form">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Enter email" type="text" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="text" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="city" placeholder="City" type="text" required>
+        </div>
+        <div class="form-group">
+        <textarea autocomplete="off" placeholder="Paste in your CV" autofocus class="form-control" name="CV" type="text" rows="8" cols="80"></textarea>
+        </div>
+        <button class="btn btn-outline-dark" type="submit">Register</button>
+</form>
+{% endblock %}

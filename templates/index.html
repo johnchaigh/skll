@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block style %}
+    h1{
+    text-align: center;
+    colour: white;
+    font-weight: 250;
+    padding: 10px;
+    }
+
+    h3{
+    text-align: center;
+    colour: white;
+    font-weight: 100;
+    padding: 20px;
+    }
+
+{% endblock %}
+
+{% block header%}
+    {{header}}
+{% endblock %}
+
+{% block main %}
+
+<div id="center">
+    <h1>SKLL</h1>
+    <h3>See how your CV will perform before you apply</h3>
+    <table>
+        <tr>
+        <td><img src="https://image.flaticon.com/icons/svg/3135/3135672.svg" alt="Check your resume" class="icon"/></td>
+        <td><img src="https://image.flaticon.com/icons/svg/2972/2972497.svg" alt="Speed up your application" class="icon"/></td>
+        <td><img src="https://image.flaticon.com/icons/svg/3135/3135675.svg" alt="Get the interview" class="icon"/></td>
+        </tr>
+    </table>
+</div>
+<div id="center">
+    <a href="/compare"class="btn btn-outline-dark">Get Started<a>
+</div>
+
+{% endblock %}

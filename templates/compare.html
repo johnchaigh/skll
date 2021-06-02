@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Compare
+{% endblock %}
+
+{% block style %}
+
+
+
+{% endblock %}
+
+{% block header%}
+    {{header}}
+{% endblock %}
+
+{% block main %}
+<div>
+    <form action="/compare" method="post" id="form">
+      <h4>Paste in the job description</h4>
+      <textarea autocomplete="off" autofocus class="form-control" name="job" type="text" rows="8" cols="80"></textarea>
+        <div id="padding">
+          <button class="btn btn-outline-dark" type="submit" style="padding: 5px 10px;">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

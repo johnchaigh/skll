@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Compare
+{% endblock %}
+
+{% block script%}
+
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block header%}
+{{header}}
+{% endblock %}
+
+{% block main %}
+
+<div id="center">
+  <canvas id="canvas" width="400" height="300">
+    This text is displayed if your browser does not support HTML5 Canvas.
+  </canvas>
+</div>
+
+<script type="text/javascript"> // Code from James Litten : https://html5.litten.com/graphing-data-in-the-html5-canvas-element-part-iv-simple-pie-charts/
+  var myColor = ["#3D7A60", "#f8f9fa"];
+  var myData = [{{matchnumber}}, {{missingnumber}}];
+
+  function getTotal() {
+    var myTotal = 0;
+    for (var j = 0; j < myData.length; j++) {
+      myTotal += (typeof myData[j] == 'number') ? myData[j] : 0;
+    }
+    return myTotal;
+  }
+
+  function plotData() {
+    var canvas;
+    var ctx;
+    var lastend = 0;
+    var myTotal = getTotal();
+
+    canvas = document.getElementById("canvas");
+    ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (var i = 0; i < myData.length; i++) {
+      ctx.fillStyle = myColor[i];
+      ctx.beginPath();
+      ctx.moveTo(200, 150);
+      ctx.arc(200, 150, 150, lastend, lastend +
+        (Math.PI * 2 * (myData[i] / myTotal)), false);
+      ctx.lineTo(200, 150);
+      ctx.fill();
+      lastend += Math.PI * 2 * (myData[i] / myTotal);
+    }
+  }
+
+  plotData();
+</script>
+
+<h4>{{percentmatch}}% match</h4>
+<h4>This job description includes {{skillnumber}} skills, {{matchnumber}} of which you have in your CV.</h4>
+
+<table id="center">
+
+  {% for rows in rows %}
+  <tr style="color:#3D7A60">
+    <td>{{ rows["skill"] }}
+    <td>
+  </tr>
+  {% endfor %}
+
+</table>
+<table id="center">
+  {% if matchnumber < skillnumber %}
+  <h4> Consider adding the following skills to your CV to make it perform better: </h4>
+  {% endif %}
+  {% for rows in missing %}
+  <tr class="text-secondary">
+    <td>{{ rows["skill"] }}
+    <td>
+  </tr>
+  {% endfor %}
+
+</table>
+
+<div id="center">
+    <a href="/compare"class="btn btn-outline-dark">Compare another role<a>
+</div>
+
+{% endblock %}
