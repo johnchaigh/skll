@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="static/css/uikit.min.css" />
+        <script src="static/js/uikit.min.js"></script>
+        <script src="static/js/uikit-icons.min.js"></script>
+
+        <!--Import my css files-->
+        <link href="/static/favicon.ico" rel="icon">
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <title>SKLL | {% block title %}{% endblock %}</title>
+
+        <style>
+
+            {% block style %}
+            {% endblock %}
+
+        </style>
+
+    </head>
+
+    <body>
+        
+
+        {% if session.user_id %}
+
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+            <nav class="uk-navbar-container" uk-navbar="dropbar: true;" style="position: relative; z-index: 980;">
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="/"><img src="static/skll_logo_menu.png" height="20px"></a></li>
+                    </ul>
+        
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="/compare">Compare</a></li>
+                        <li><a href="/profile"></span> Profile</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+        
+                </div>
+            </nav>
+        </div>
+
+        {% else %}
+
+        <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+            <nav class="uk-navbar-container" uk-navbar="dropbar: true;" style="position: relative; z-index: 980;">
+                <div class="uk-navbar-center">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                    </ul>
+        
+                </div>
+            </nav>
+        </div>
+ 
+        {% endif %}
+
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+
+    </body>
+
+</html>

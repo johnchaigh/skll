@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Compare
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block header%}
+    {{header}}
+{% endblock %}
+
+{% block main %}
+<div style="text-align: center; padding-left: 10%; padding-right: 10%;">
+    <form action="/compare" method="post" id="form">
+      <div style="text-align: center; padding-top: 30px;">
+      <img src="static/header_compare_small.png">
+      <p class="uk-text-light">Paste in a job description to see how your CV will perform</p>
+      <textarea autocomplete="off" autofocus class="uk-textarea" name="job" type="text" rows="8" cols="80"></textarea>
+        <div style="padding: 10px;">
+          <button class="uk-button uk-button-primary" type="submit"">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

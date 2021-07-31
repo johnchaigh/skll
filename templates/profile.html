@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Profile
+{% endblock %}
+
+{% block script%}
+
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block header%}
+{{header}}
+{% endblock %}
+
+{% block main %}
+<div style="z-index: 900; background-color: white;" uk-sticky="top: 100">
+  <div style="text-align: center; padding-top: 30px;">
+    <img src="static/header_profile_small.png">
+    <p class="uk-text-light">This is where your skills are kept<br>Click to search for jobs</p>
+  </div>
+</div>
+
+<div style="padding-left: 10%; padding-right: 10%;">
+  <div class="uk-grid-column-small uk-grid-row-small uk-child-width-1-3@s uk-text-center" uk-grid>
+    {% for rows in rows %}
+    <div>
+      <a href="https://uk.indeed.com/jobs?q={{rows['skill']}}&l={{location}}" target="_blank" class="uk-button uk-card uk-card-default uk-card-body">{{rows["skill"]}}</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div style="text-align: center; padding: 20px;">
+  <a href="/update" class="uk-button uk-button-primary" type="submit">Update your CV</a>
+</div>
+
+{% endblock %}

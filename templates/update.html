@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Compare
+{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block header%}
+    {{header}}
+{% endblock %}
+
+{% block main %}
+<div class="prelogin_background">
+  <div class="uk-align-center uk-padding-large">
+    <div class="uk-card uk-card-primary uk-card-body uk-width-1-3@m uk-card-hover uk-padding-medium">
+      <form action="/update" method="post" id="form">
+        <h4>Paste in a new CV to update your skills</h4>
+        <textarea autocomplete="off" autofocus class="uk-textarea" name="CV" type="text" rows="8" cols="90"></textarea>
+          <div style="padding-top: 10px; text-align: center;">
+            <button class="uk-button uk-button-primary" type="submit">Submit</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

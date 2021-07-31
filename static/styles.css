@@ -1,0 +1,8 @@
+.prelogin_background {
+    background-image:url(skll_home_bg.jpg); 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    height: 92vh;
+    width: 100vw;
+}

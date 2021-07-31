@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block header%}
+    {{header}}
+{% endblock %}
+
+{% block main %}
+
+
+<div class="prelogin_background" style="position: relative;">
+    <div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+        <div style="text-align: center;">
+            <img src="static/skll_logo_large.png">
+            <h3 class="uk-text uk-text-lead">See how your CV will perform before you apply</h3>
+            <button href="/login"class="uk-button uk-button-primary">Learn more</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+psycopg2-binary = "*"
+sqlalchemy = "*"
+gunicorn = "*"
+flask-session = "*"
+cs50 = "*"
+spacy = "*"
+pandas = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "*"
