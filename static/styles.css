@@ -6,3 +6,15 @@
     height: 92vh;
     width: 100vw;
 }
+
+.fs_div {; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    height: 92vh;
+    width: 100vw;
+}
+
+html { 
+    scroll-behavior: smooth; 
+}
