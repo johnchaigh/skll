@@ -42,6 +42,7 @@ def after_request(response):
 def extract_skills(resume_text): # Function copied in part from Omkar Pathak // https://github.com/OmkarPathak/ResumeParser
 
     nlp = spacy.load('en_core_web_sm')
+    data, vocab = tokenize(texts, max_length, skip=-2, attr=LOWER, merge=False, nlp=nlp)
     doc = nlp(resume_text)
 
     # removing stop words and implementing word tokenization
