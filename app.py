@@ -206,9 +206,13 @@ def results():
         else:
             percentmatch = round(float((matchnumber/skillnumber)*100))
 
+        data = [missingnumber, matchnumber]    
+        colours = ["#f8f9fa", "#4695eb"]
+        labels = ["Missing Skills", "Matched Skills"]
+
          #now results have been calculated update the database, removing all the job skills
         db.execute("DELETE FROM skills WHERE username = ? AND jobskill = 'YES'", username)
-        return render_template("results.html", missing = missing, missingnumber = missingnumber, rows = match, skillnumber = skillnumber, matchnumber = matchnumber, percentmatch = percentmatch)
+        return render_template("results.html", missing = missing, missingnumber = missingnumber, labels = labels, colours=colours, data = data, rows = match, skillnumber = skillnumber, matchnumber = matchnumber, percentmatch = percentmatch)
 
 @app.route("/profile", methods=["GET", "POST"])
 @login_required

@@ -13,79 +13,67 @@
 
 {% block main %}
 
-<div style="text-align: center; padding-top: 3%;">
-  <canvas id="canvas" width="400" height="300">
-    This text is displayed if your browser does not support HTML5 Canvas.
-  </canvas>
-
-<script type="text/javascript"> // Code from James Litten : https://html5.litten.com/graphing-data-in-the-html5-canvas-element-part-iv-simple-pie-charts/
-  var myColor = ["#4695eb", "#f8f9fa"];
-  var myData = [{{matchnumber}}, {{missingnumber}}];
-
-  function getTotal() {
-    var myTotal = 0;
-    for (var j = 0; j < myData.length; j++) {
-      myTotal += (typeof myData[j] == 'number') ? myData[j] : 0;
-    }
-    return myTotal;
-  }
-
-  function plotData() {
-    var canvas;
-    var ctx;
-    var lastend = 0;
-    var myTotal = getTotal();
-
-    canvas = document.getElementById("canvas");
-    ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (var i = 0; i < myData.length; i++) {
-      ctx.fillStyle = myColor[i];
-      ctx.beginPath();
-      ctx.moveTo(200, 150);
-      ctx.arc(200, 150, 150, lastend, lastend +
-        (Math.PI * 2 * (myData[i] / myTotal)), false);
-      ctx.lineTo(200, 150);
-      ctx.fill();
-      lastend += Math.PI * 2 * (myData[i] / myTotal);
-    }
-  }
-
-  plotData();
-</script>
-
-<h2>{{percentmatch}}% match</h4>
-<h4 class="uk-text-light">This job description includes {{skillnumber}} skills, {{matchnumber}} of which you have in your CV.</h4>
-<div style="padding-left: 3%; padding-right: 3%;">
-<div style="padding-left: 10%; padding-right: 10%; text-align: center;">
-  <div class="uk-grid-column-small uk-grid-row-small uk-child-width-1-2@s" uk-grid>
-    {% for rows in rows %}
-  <div style="padding: 10px;">
-    <div class="uk-card uk-card-primary uk-card-body">
-      <p>{{rows['skill']}}</p>
-    </div>
+<div class="results_container"> 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/Chart.min.js"></script>
+  <div width='25%'>
+    <canvas id="pathwaychart1"></canvas>
   </div>
-    {% endfor %}  
-  </div>
-</div>
-{% if missingnumber > 0 %}
-<h4 class="uk-text-light"> Consider adding the following skills to your CV to make it perform better:</h4>
-<div style="padding-left: 10%; padding-right: 10%; text-align: center;">
+                <script>
+                  var ctx = document.getElementById("pathwaychart1").getContext('2d');
+                  var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: {{ labels | safe }},
+                        datasets: [{
+                          backgroundColor: {{ colours | safe }},
+                          data: {{ data | safe }}
+                        }]
+                      },
+                      options: {
+                          legend:{
+                            position: 'bottom',
+                          },
+                          plugins: {
+                            tooltips: {
+                              enabled: true,
+                            }
+                          }
+                              }
+                            });
+                </script>
+
+  <h2 >{{percentmatch}}% match</h4>
+  <h4 class="uk-text-light">This job description includes {{skillnumber}} skills, {{matchnumber}} of which you have in your CV.</h4>
+
+  <div style="padding-left: 3%; padding-right: 3%;">
+  <div style="padding-left: 10%; padding-right: 10%; text-align: center;">
     <div class="uk-grid-column-small uk-grid-row-small uk-child-width-1-2@s" uk-grid>
-      {% for rows in missing %}
+      {% for rows in rows %}
     <div style="padding: 10px;">
-      <div class="uk-card uk-card-secondary uk-card-body">
+      <div class="uk-card uk-card-primary uk-card-body">
         <p>{{rows['skill']}}</p>
       </div>
     </div>
       {% endfor %}  
+    </div>
   </div>
-</div>
-{% endif %}
-<div style="padding: 5%;">
-  <a href="/compare" class="uk-button uk-button-primary">Compare another role<a>
-</div>
+  {% if missingnumber > 0 %}
+  <h4 class="uk-text-light"> Consider adding the following skills to your CV to make it perform better:</h4>
+  <div style="padding-left: 10%; padding-right: 10%; text-align: center;">
+      <div class="uk-grid-column-small uk-grid-row-small uk-child-width-1-2@s" uk-grid>
+        {% for rows in missing %}
+      <div style="padding: 10px;">
+        <div class="uk-card uk-card-secondary uk-card-body">
+          <p>{{rows['skill']}}</p>
+        </div>
+      </div>
+        {% endfor %}  
+    </div>
+  </div>
+  {% endif %}
+    <div style="padding: 5%;">
+      <a href="/compare" class="uk-button uk-button-primary">Compare another role<a>
+    </div>
 </div>
 
 
