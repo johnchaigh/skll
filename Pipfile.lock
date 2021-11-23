@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "370b3afd8c61c4648a5dfd67709d76d22b9cad05a321d8816ce032b2b3bfb015"
+            "sha256": "1268cca34ac4506cfb26c47c193ae2a09567dab840dd336cce0edb65bfea9917"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -106,11 +106,11 @@
             "version": "==2.0.6"
         },
         "en-core-web-sm": {
-            "file": "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-1.2.0/en_core_web_sm-1.2.0.tar.gz",
+            "file": "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0.tar.gz",
             "hashes": [
-                "sha256:4814b0b0396e1f52d4f2fb0baa15cca2022667449135ec7fa54971d6cea1846d"
+                "sha256:0673b3ce4a28a19e99dc0fc3f8f7fe67b936c41749e6b70f778ec5f9f78f3a66"
             ],
-            "version": "==1.2.0"
+            "version": "==3.0.0"
         },
         "flask": {
             "hashes": [

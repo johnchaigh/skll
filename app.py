@@ -6,6 +6,7 @@ from cs50 import SQL
 from functools import wraps
 import spacy
 import pandas as pd
+import en_core_web_sm
 
 app = Flask(__name__)
 
@@ -41,7 +42,7 @@ def after_request(response):
 
 def extract_skills(resume_text): 
 
-    nlp = spacy.load('en_core_web_sm')
+    nlp = en_core_web_sm.load()
     doc = nlp(resume_text)
 
     # removing stop words and implementing word tokenization
