@@ -39,10 +39,9 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-def extract_skills(resume_text): # Function copied in part from Omkar Pathak // https://github.com/OmkarPathak/ResumeParser
+def extract_skills(resume_text): 
 
     nlp = spacy.load('en_core_web_sm')
-    data, vocab = tokenize(texts, max_length, skip=-2, attr=LOWER, merge=False, nlp=nlp)
     doc = nlp(resume_text)
 
     # removing stop words and implementing word tokenization
@@ -145,7 +144,6 @@ def logout():
 @login_required
 def compare():
 
-
     if request.method == "GET":
         return render_template("compare.html")
 
@@ -156,6 +154,8 @@ def compare():
 
         resume_text = request.form.get("job")
         jobskills = extract_skills(resume_text)
+
+        print(jobskills)
 
         for i in range(len(jobskills)):
             db.execute("INSERT INTO skills (username, skill, jobskill) VALUES (?,?,'YES')", username, jobskills[i])
@@ -173,16 +173,29 @@ def results():
 
         # Determine skills from job description and number
         job = db.execute("SELECT * FROM skills WHERE username = ? AND jobskill = 'YES'", username)
+
+        print("Job Skills")
+        print(job)
+
         skillnumber = len(job)
 
         # Determine skills from CV and number
         cv = db.execute("SELECT * FROM skills WHERE username = ? AND jobskill = 'NO'", username)
+
         cvnumber = len(cv)
 
         match = db.execute("SELECT skill FROM skills WHERE username = ? GROUP BY (skill) HAVING COUNT(skill) = 2", username)
+
+        print("CV Match ")
+        print(match)
+
         matchnumber = len(match)
 
         missing = db.execute("SELECT skill FROM skills WHERE username = ? AND jobskill = 'YES' AND skill NOT IN (SELECT skill FROM skills WHERE username = ? AND jobskill = 'NO')", username, username)
+        
+        print("Missing Skills")
+        print(missing)
+
         missingnumber = int(skillnumber - matchnumber)
 
         if (matchnumber == 0):
@@ -192,6 +205,7 @@ def results():
         else:
             percentmatch = round(float((matchnumber/skillnumber)*100))
 
+         #now results have been calculated update the database, removing all the job skills
         db.execute("DELETE FROM skills WHERE username = ? AND jobskill = 'YES'", username)
         return render_template("results.html", missing = missing, missingnumber = missingnumber, rows = match, skillnumber = skillnumber, matchnumber = matchnumber, percentmatch = percentmatch)
 
@@ -224,6 +238,9 @@ def update():
 
         info = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
         username = info[0]["email"]
+
+        #Remove old CV information from the database
+        db.execute("DELETE FROM skills WHERE username = ? AND jobskill = 'NO'", username)
 
         #Update CV information in database
 

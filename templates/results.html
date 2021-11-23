@@ -69,6 +69,7 @@
     {% endfor %}  
   </div>
 </div>
+{% if missingnumber > 0 %}
 <h4 class="uk-text-light"> Consider adding the following skills to your CV to make it perform better:</h4>
 <div style="padding-left: 10%; padding-right: 10%; text-align: center;">
     <div class="uk-grid-column-small uk-grid-row-small uk-child-width-1-2@s" uk-grid>
@@ -81,6 +82,7 @@
       {% endfor %}  
   </div>
 </div>
+{% endif %}
 <div style="padding: 5%;">
   <a href="/compare" class="uk-button uk-button-primary">Compare another role<a>
 </div>
